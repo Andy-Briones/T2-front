@@ -1,1 +1,24 @@
-<p>family-edit-component works!</p>
+<form class="example-container" [formGroup] = "form" (submit)="persist()">
+    <div [hidden]="true">
+        <mat-form-field>
+            <input matInput placeholder="Family ID" formControlName="id_family">
+        </mat-form-field>
+    </div>
+
+    <mat-form-field>
+        <input matInput placeholder="Nombre" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Descripcion" formControlName="description">
+    </mat-form-field>
+
+    <button matButton type="submit">
+        <mat-icon>done</mat-icon>
+        <span>Guardar</span>
+    </button>
+    <button matButton routerLink="/pages/family" type="button">
+        <mat-icon>cancel</mat-icon>
+        <span>Cancelar</span>
+    </button>
+</form>

@@ -1,1 +1,24 @@
-<p>category-edit-component works!</p>
+<form class="example-container" [formGroup] = "form" (submit)="persist()">
+    <div [hidden]="true">
+        <mat-form-field>
+            <input matInput placeholder="Patient ID" formControlName="id_category">
+        </mat-form-field>
+    </div>
+
+    <mat-form-field>
+        <input matInput placeholder="nombre" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="descripcion" formControlName="description">
+    </mat-form-field>
+
+    <button matButton type="submit">
+        <mat-icon>done</mat-icon>
+        <span>Guardar</span>
+    </button>
+    <button matButton routerLink="/pages/category" type="button">
+        <mat-icon>cancel</mat-icon>
+        <span>Cancelar</span>
+    </button>
+</form>

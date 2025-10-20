@@ -1,1 +1,32 @@
-<p>laboratory-edit-component works!</p>
+<form class="example-container" [formGroup] = "form" (submit)="persist()">
+    <div [hidden]="true">
+        <mat-form-field>
+            <input matInput placeholder="Laboratory ID" formControlName="id_laboratory">
+        </mat-form-field>
+    </div>
+
+    <mat-form-field>
+        <input matInput placeholder="Nombre" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Correo" formControlName="eamil">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Direccion" formControlName="address">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Telefono" formControlName="phone">
+    </mat-form-field>
+
+    <button matButton type="submit">
+        <mat-icon>done</mat-icon>
+        <span>Guardar</span>
+    </button>
+    <button matButton routerLink="/pages/patient" type="button">
+        <mat-icon>cancel</mat-icon>
+        <span>Cancelar</span>
+    </button>
+</form>

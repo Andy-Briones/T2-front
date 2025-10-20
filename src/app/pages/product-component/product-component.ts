@@ -19,6 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialog } from '../../shared/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-product-component',
@@ -34,6 +36,7 @@ import { MatSelectModule } from '@angular/material/select';
     RouterOutlet,
     RouterLink,
     MatSelectModule,
+    MatDialogModule,
   ],
   templateUrl: './product-component.html',
   styleUrl: './product-component.css'
@@ -66,6 +69,7 @@ export class ProductComponent {
     private categoryService: CategoryService,
     private familyService: FamilyService,
     private laboratoryService: LaboratoryService,
+    private dialog: MatDialog,
     private _snackbar: MatSnackBar
   ) {}
 
@@ -113,6 +117,23 @@ export class ProductComponent {
   updateLaboratory(row: Product, id_laboratory: number) {
     row.laboratory.id_laboratory = id_laboratory;
     this.updateProduct(row);
+  }
+
+  // Función para confirmar eliminación
+  confirmDelete(id: number) {
+    const dialogRef = this.dialog.open(ConfirmDialog, {
+      width: '350px',
+      data: {
+        title: 'Confirmar Delete',
+        message: 'Estas seguro de borrar el producto?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.delete(id); // Llama a tu función delete original
+      }
+    });
   }
 
   delete(id: number) {

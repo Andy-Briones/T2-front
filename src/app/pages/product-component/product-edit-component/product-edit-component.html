@@ -1,1 +1,71 @@
-<p>product-edit-component works!</p>
+<form class="example-container" [formGroup] = "form" (ngSubmit)="persist()">
+    <div [hidden]="true">
+        <mat-form-field>
+            <input matInput placeholder="Product ID" formControlName="id_product">
+        </mat-form-field>
+    </div>
+
+    <mat-form-field>
+        <input matInput placeholder="nombre" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="descripcion" formControlName="description">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="presentation" formControlName="presentation">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="number" placeholder="stock" formControlName="stock">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="number" placeholder="precio_unitario" formControlName="unuit_price">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Expiracion</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="expired">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+    <mat-label>Categoría</mat-label>
+        <mat-select formControlName="id_category">
+            <mat-option *ngFor="let c of categoria" [value]="c.id_category">
+            {{ c.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Family</mat-label>
+            <mat-select formControlName="id_family">
+                <mat-option *ngFor="let f of familia" [value]="f.id_family">
+                {{ f.name }}
+                </mat-option>
+            </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Laboratory</mat-label>
+            <mat-select formControlName="id_laboratory">
+                <mat-option *ngFor="let l of laboratorio" [value]="l.id_laboratory">
+                {{ l.name }}
+                </mat-option>
+            </mat-select>
+    </mat-form-field>
+
+    <button matButton type="submit">
+        <mat-icon>done</mat-icon>
+        <span>Guardar</span>
+    </button>
+    <button matButton routerLink="/pages/product" type="button">
+        <mat-icon>cancel</mat-icon>
+        <span>Cancelar</span>
+    </button>
+</form>
+<!-- <pre>{{ form.value | json }}</pre> -->

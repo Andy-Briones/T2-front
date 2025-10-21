@@ -1,4 +1,4 @@
-<form class="example-container" [formGroup] = "form" (submit)="persist()">
+<!-- <form class="example-container" [formGroup] = "form" (submit)="persist()">
     <div [hidden]="true">
         <mat-form-field>
             <input matInput placeholder="Patient ID" formControlName="id_category">
@@ -21,4 +21,53 @@
         <mat-icon>cancel</mat-icon>
         <span>Cancelar</span>
     </button>
+</form> -->
+
+<form class="example-container" [formGroup]="form" (ngSubmit)="persist()">
+  <!-- Campo oculto ID -->
+  <div [hidden]="true">
+    <mat-form-field>
+      <input matInput placeholder="Patient ID" formControlName="id_category">
+    </mat-form-field>
+  </div>
+
+  <!-- Campo Nombre -->
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="name" placeholder="nombre">
+    <mat-error *ngIf="form.get('name')?.hasError('required')">
+      El nombre no puede ser nulo
+    </mat-error>
+    <mat-error *ngIf="form.get('name')?.hasError('minlength')">
+      El nombre debe tener al menos 2 caracteres
+    </mat-error>
+    <mat-error *ngIf="form.get('name')?.hasError('maxlength')">
+      El nombre no puede superar los 100 caracteres
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Campo Descripción -->
+  <mat-form-field appearance="fill">
+    <mat-label>Descripción</mat-label>
+    <input matInput formControlName="description" placeholder="descripcion">
+    <mat-error *ngIf="form.get('description')?.hasError('required')">
+      La descripción no puede ser nula
+    </mat-error>
+    <mat-error *ngIf="form.get('description')?.hasError('minlength')">
+      La descripción debe tener al menos 3 caracteres
+    </mat-error>
+    <mat-error *ngIf="form.get('description')?.hasError('maxlength')">
+      La descripción no puede superar los 255 caracteres
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+    <mat-icon>done</mat-icon>
+    <span>Guardar</span>
+  </button>
+
+  <button mat-raised-button color="warn" routerLink="/pages/category" type="button">
+    <mat-icon>cancel</mat-icon>
+    <span>Cancelar</span>
+  </button>
 </form>
